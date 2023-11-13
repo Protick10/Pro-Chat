@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "952124476737",
+    "project_id": "pro-chat-2235a",
+    "storage_bucket": "pro-chat-2235a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952124476737:android:cfcf34606adf6b1741a5c0",
+        "android_client_info": {
+          "package_name": "com.example.prochat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByxSGuySWynK0fFpLQ2Kht5WbOWSOTUzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
