@@ -6,13 +6,13 @@ public class Users {
 
     public Users(){}
 
-    public Users(String id, String toString, String toString1, String toString2, String imageuri, String status) {
+    public Users(String id, String username, String mail, String password, String profilepic, String status) {
 
         this.userId = id;
-        this.username = toString;
-        this.mail = toString1;
-        this.password = toString2;
-        this.profilepic = imageuri;
+        this.username = username;
+        this.mail = mail;
+        this.password = password;
+        this.profilepic = profilepic;
         this.status = status;
     }
 

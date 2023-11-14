@@ -1,5 +1,7 @@
 package com.example.prochat;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LogIn extends AppCompatActivity {
 
@@ -26,6 +30,7 @@ public class LogIn extends AppCompatActivity {
     FirebaseAuth auth;
 
     TextView signupbtn;
+    FirebaseUser firebaseUser;
 
     android.app.ProgressDialog progressDialog;
 
@@ -33,6 +38,12 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+
+        auth = FirebaseAuth.getInstance();
+        login = findViewById(R.id.loginButton);
+        email = findViewById(R.id.etLoginEmail);
+        password = findViewById(R.id.etLoginPassword);
+        signupbtn = findViewById(R.id.loginSignup);
 //creating a loading before main screen comes..
 
         progressDialog = new ProgressDialog(this);
@@ -40,11 +51,7 @@ public class LogIn extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
 
-        auth = FirebaseAuth.getInstance();
-        login = findViewById(R.id.loginButton);
-        email = findViewById(R.id.etLoginEmail);
-        password = findViewById(R.id.etLoginPassword);
-        signupbtn = findViewById(R.id.loginSignup);
+
 
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +61,19 @@ public class LogIn extends AppCompatActivity {
                 finish();
             }
         });
+
+// this is to make the user singed in after loging to the app...
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            Intent i = new Intent(LogIn.this, MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        }
+        else {
+            // User is signed out
+            Log.d(TAG, "onAuthStateChanged:signed_out");
+        }
 
 
         login.setOnClickListener(new View.OnClickListener() {
