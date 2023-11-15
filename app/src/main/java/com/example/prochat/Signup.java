@@ -26,8 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+
+
 
 public class Signup extends AppCompatActivity {
 
@@ -41,6 +45,8 @@ public class Signup extends AppCompatActivity {
     FirebaseDatabase database;
     FirebaseStorage storage;
     ProgressDialog progressDialog;
+
+
 
 
 
@@ -63,6 +69,9 @@ public class Signup extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
+
+
+
 
 
         loginbut.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +113,10 @@ public class Signup extends AppCompatActivity {
                 }
 
                 else {
-                    auth.createUserWithEmailAndPassword(signupemail.getText().toString(),signuppassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                    String hashedPassword = PasswordHasher.hashString(signuppassword.getText().toString());
+//                    auth.createUserWithEmailAndPassword(signupemail.getText().toString(),signuppassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    auth.createUserWithEmailAndPassword(signupemail.getText().toString(),hashedPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
@@ -122,7 +134,7 @@ public class Signup extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(Uri uri) {
                                                         imageuri = uri.toString();
-                                                        Users users = new Users(id,signupusername.getText().toString(),signupemail.getText().toString(),signuppassword.getText().toString(),imageuri,status);
+                                                        Users users = new Users(id,signupusername.getText().toString(),signupemail.getText().toString(),hashedPassword,imageuri,status);
                                                         reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
@@ -148,7 +160,7 @@ public class Signup extends AppCompatActivity {
 
                                     String status = "Hey I'm Using This Application";
                                     imageuri = "https://firebasestorage.googleapis.com/v0/b/pro-chat-2235a.appspot.com/o/circle.png?alt=media&token=d40c7588-5ab2-425c-a484-9a17b69b1759";
-                                    Users users = new Users(id,signupusername.getText().toString(),signupemail.getText().toString(),signuppassword.getText().toString(),imageuri,status);
+                                    Users users = new Users(id,signupusername.getText().toString(),signupemail.getText().toString(),hashedPassword,imageuri,status);
                                     reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {

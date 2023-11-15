@@ -98,7 +98,9 @@ public class LogIn extends AppCompatActivity {
 
                 }else {
 
-                    auth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    String hashedPassword = PasswordHasher.hashString(password.getText().toString());
+
+                    auth.signInWithEmailAndPassword(email.getText().toString(),hashedPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 

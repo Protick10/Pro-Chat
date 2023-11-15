@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatWindow"
+    android:background="@drawable/chatwinbg">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chatwinll1"
+        android:background="#9FFDD1C6"
+
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chatwinCameraLogo"
+            android:layout_width="61dp"
+            android:layout_height="57dp"
+            android:src="@drawable/photocamera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.122"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.645"
+            android:layout_margin="5dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/chatwinRecname"
+            android:text="Pro Chat"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"/>
+
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="654dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="72dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_below="@id/chatwinll1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58.50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="2.60dp"
+        android:layout_marginTop="2.60dp"
+        android:layout_marginBottom="2.60dp"
+        android:layout_marginEnd="2.60dp">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="45.50dp"
+            android:background="@color/white"
+            app:cardCornerRadius="32.50dp"
+            android:layout_marginStart="6.50dp"
+            android:layout_marginEnd="9.10dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/chatwindowetmassege"
+                android:layout_width="338dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Type Your Masseges here..."
+                android:paddingStart="13.00dp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/chatwindowSendbtn"
+            android:layout_width="100.50dp"
+            android:layout_height="45.50dp"
+            android:background="@color/white"
+            app:cardCornerRadius="32.50dp"
+            android:layout_marginStart="6.50dp"
+            android:layout_marginEnd="6.50dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="31dp"
+                android:layout_gravity="center"
+                android:background="@drawable/sendbutton"
+                android:layout_marginLeft="4dp"/>
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</RelativeLayout>
