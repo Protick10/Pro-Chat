@@ -44,18 +44,33 @@
     </LinearLayout>
 
 
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/chatwindowrecyclerviw"-->
+<!--        android:layout_width="match_parent"-->
+<!--        -->
+<!--        android:layout_above="@id/ll2"-->
+<!--        -->
+<!--        android:layout_height="502dp"-->
+<!--        android:layout_below="@id/chatwinll1"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginLeft="3dp"-->
+<!--        android:layout_marginTop="70dp"-->
+<!--        android:layout_marginRight="2dp"-->
+<!--        android:layout_marginBottom="7dp" />-->
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatwindowrecyclerviw"
         android:layout_width="match_parent"
-        android:layout_height="654dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="72dp"
-        android:layout_marginBottom="7dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_below="@id/chatwinll1"/>
+        android:layout_height="500dp"
+        android:layout_above="@id/ll2"
+        android:layout_below="@id/chatwinll1"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="-7dp"
+        android:padding="@dimen/_10sdp" />
 
     <LinearLayout
+        android:id="@+id/ll2"
         android:layout_width="match_parent"
         android:layout_height="58.50dp"
         android:orientation="horizontal"
