@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Users> usersArrayList;
 
     ImageView logoutimg;
+    ImageView cambut,setbut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,16 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        cambut = findViewById(R.id.mainCamerabtn);
+        setbut = findViewById(R.id.mainSettingsbtn);
+
         DatabaseReference reference = database.getReference().child("user");
         usersArrayList = new ArrayList<>(); //allocating memory of array list
+
+        recyclerView = findViewById(R.id.mainRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        userAdapter = new UserAdapter(MainActivity.this,usersArrayList);
+        recyclerView.setAdapter(userAdapter);
 
         if (auth.getCurrentUser() == null){
             Intent intent = new Intent(MainActivity.this, LogIn.class);
@@ -103,10 +113,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView = findViewById(R.id.mainRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        userAdapter = new UserAdapter(MainActivity.this,usersArrayList);
-        recyclerView.setAdapter(userAdapter);
+
+        setbut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Settings.class);
+                startActivity(intent);
+            }
+        });
+
+        cambut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent,10);
+            }
+        });
+
+
+
+
 
 
 

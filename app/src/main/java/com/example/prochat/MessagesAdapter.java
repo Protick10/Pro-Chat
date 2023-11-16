@@ -3,7 +3,9 @@ package com.example.prochat;
 import static com.example.prochat.ChatWindow.reciverIImg;
 import static com.example.prochat.ChatWindow.senderImg;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,27 @@ public class MessagesAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         MessagModelClass messagModelClass = messagesAdpterArrayList.get(position);
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                new AlertDialog.Builder(context).setTitle("Delete")
+                        .setMessage("Are you sure you want to delete this message?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        }).show();
+
+                return false;
+            }
+        });
 
 
         if (holder.getClass()==senderViewHolder.class){
